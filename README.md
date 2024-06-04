@@ -7,7 +7,7 @@ Pokedex first/second generation
 npx react-native init reactnativePokemon --template react-native-template-typescript
 ```
 - React - Version 18.2.0
-- Metro - Version 0.74.83
+- Metro - Version 0.80.90
 - Node - Version 20.12.2
 - Npm - Version 10.5.0
 
@@ -35,13 +35,17 @@ npx react-native init reactnativePokemon --template react-native-template-typesc
    ```bash
    source ~/.zshrc
    ```
-   Install `watchman`. It allows watchs hotreload files in **React Native**
+   Install `watchman`. It allows watchs hotreload sync files in **React Native**
    ```bash
    brew install watchman
    ```
    Add the following scripts to your `package.json` file, execute and fix errors:
    ```bash
    "doctor": "react-native doctor" 
+   ```
+   Update script `ios` for this (or anything emulator device):
+   ```bash
+   "ios": "react-native run-ios --simulator='iPhone 15 Pro'"
    ```
 
 ## Development server 🚀
