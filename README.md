@@ -460,6 +460,7 @@ Configuration to import files
 ```
 
 - Install
+
 ```bash
 npm i -D babel-plugin-module-resolver
 ```
@@ -483,10 +484,59 @@ plugins: [
 ```
 
 - Add in _`jest.config.js`_
+
 ```js
 moduleNameMapper: {
   "^@components/(.*)$": "<rootDir>/src/components/$1",
   "^@otherFolder/(.*)$": "<rootDir>/src/otherFolder/$1"
+}
+```
+
+## Tailwind (NativeWind) 🌈
+
+Configuration to NativeWind
+[Go to ↪](https://www.nativewind.dev/quick-starts/react-native-cli)
+
+Install libraries:
+
+```bash
+npm i -S nativewind
+npm i -D autoprefixer tailwindcss@3.3.2 postcss
+```
+
+Initialize Tailwind:
+
+```bash
+npx tailwindcss init
+```
+
+Add in _`tailwind.config.js`_
+
+```javascript
+mode: 'jit',
+content: [
+  "./src/**/*.{html,ts,tsx,css,scss,sass,less,styl}"
+]
+```
+
+Add in `plugins` of _`babel.config.js`_
+```javascript
+"nativewind/babel"
+```
+
+Example usage:
+```tsx
+import { styled } from "nativewind";
+import { Text } from "react-native";
+
+// ¡IMPORTANT! Neccessary to use className attribute
+// Same usage for View, SafeAreaView, etc.
+const StyledText = styled(Text);
+
+export const Header = () => {
+  return (
+    <StyledText className="text-green-500 text-xl">Header</StyledText>
+  )
 }
 ```
 
@@ -517,17 +567,20 @@ npm i -D react-native-eject
 ```
 
 > If you need clear cache to metro:
+
 ```bash
 "start:clean": "npm start -- --reset-cache"
 ```
 
 > If you have a watchman warning **`(warning: Watchman watch-project)`**:
+
 ```bash
 watchman watch-del-all
 watchman watch-project /Users/bxnny/Desktop/reactnative-pokemon
 ```
 
 > If you have eslint error **`(Error: .eslintrc.json » @react-native/eslint-config#overrides[3]: Environment key "jest/globals" is unknown)`**:
+
 ```bash
 npm i eslint-plugin-jest -D
 ```
