@@ -5,6 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator='iPhone 15 Pro'",
+    "ios:device": "react-native run-ios",
     "start": "react-native start",
     "start:clean": "npm start -- --reset-cache",
     "doctor": "react-native doctor",
@@ -14,12 +15,18 @@
     "lint:fix": "eslint --fix .",
     "lint:staged": "npx lint-staged",
     "test": "jest --coverage",
-    "test:one": "jest --coverage --collectCoverageFrom='your-url-relative-component-here' --watch your-url-relative-component-here"
+    "test:one": "jest --coverage --collectCoverageFrom='your-url-relative-component-here' --watch your-url-relative-component-here",
+    "fonts": "npx react-native-asset"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.5",
+    "axios": "^1.7.2",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
-    "react-native": "0.74.1"
+    "react-native": "0.74.1",
+    "react-native-svg": "^15.3.0",
+    "react-redux": "^9.1.2",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -51,6 +58,7 @@
     "lint-staged": "^15.2.5",
     "postcss": "^8.4.38",
     "prettier": "2.8.8",
+    "react-native-svg-transformer": "^1.4.0",
     "react-test-renderer": "18.2.0",
     "tailwindcss": "^3.3.2",
     "typescript": "5.0.4"

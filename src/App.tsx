@@ -1,22 +1,13 @@
-import { styled } from "nativewind";
-import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
+import HomeScreen from "@screens/home";
+import store from "@store/index";
+import { Provider } from "react-redux";
 
-const StyledViewx = styled(View);
-const StyledText = styled(Text);
-
-function App() {
+const App = () => {
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <StyledViewx className="bg-gray-200">
-          <StyledText className="text-blue-500 text-lg">
-            Hello, Tailwind with NativeWind!
-          </StyledText>
-        </StyledViewx>
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={store}>
+      <HomeScreen />
+    </Provider>
   );
-}
+};
 
 export default App;
