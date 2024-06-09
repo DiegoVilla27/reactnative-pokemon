@@ -1,6 +1,6 @@
-import { Rgb } from "@/interfaces/colors";
+import { Rgb } from "@interfaces/colors";
 
-export const GradientBackground = (color?: string | number | Rgb): string => {
+export const GradientBackground = (color?: string | number | Rgb): string[] => {
   if (color) {
     const colorMapType: Rgb = color as Rgb;
     const [rX2, gX2, bX2]: number[] = darkenColor(
@@ -19,18 +19,16 @@ export const GradientBackground = (color?: string | number | Rgb): string => {
       [colorMapType[0], colorMapType[1], colorMapType[2]],
       0.8
     );
-    const colorFilled: string = `
-    linear-gradient(
-      0deg,
-      rgb(${rX8}, ${gX8}, ${bX8}) 0%,
-      rgb(${rX6}, ${gX6}, ${bX6}) 10%,
-      rgb(${rX4}, ${gX4}, ${bX4}) 20%,
-      rgb(${rX2}, ${gX2}, ${bX2}) 30%,
-      rgb(${colorMapType[0]}, ${colorMapType[1]}, ${colorMapType[2]}) 50%
-    )`;
-    return color ? colorFilled : "rgb(0, 0, 0)";
+    const colorFilled: string[] = [
+      `rgb(${colorMapType[0]}, ${colorMapType[1]}, ${colorMapType[2]}) 50%`,
+      `rgb(${rX2}, ${gX2}, ${bX2}) 30%`,
+      `rgb(${rX4}, ${gX4}, ${bX4}) 20%`,
+      `rgb(${rX6}, ${gX6}, ${bX6}) 10%`,
+      `rgb(${rX8}, ${gX8}, ${bX8}) 0%`
+    ];
+    return color ? colorFilled : ["rgb(0, 0, 0)"];
   }
-  return "rgb(0, 0, 0)";
+  return ["rgb(0, 0, 0)"];
 };
 
 const darkenColor = (color: Rgb, percentage: number): number[] => {

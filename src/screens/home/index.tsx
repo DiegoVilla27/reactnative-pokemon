@@ -1,52 +1,40 @@
-import { Icons } from "@helpers/assets/icons";
+import { Spinner } from "@components/spinner";
 import { Images } from "@helpers/assets/images";
-import { TextBox, ViewBox } from "@helpers/nativewind";
+import { ImageTW, ScrollViewTW, TextTW, ViewTW } from "@helpers/nativewind";
 import SafeAreaLayout from "@layouts/safe-area";
-import {
-  Image,
-  ImageStyle,
-  ScrollView,
-  StatusBar,
-  StyleProp,
-  ViewStyle
-} from "react-native";
+import { StatusBar } from "react-native";
+import { useHome } from "./hooks";
+import PokeList from "./components/list";
+import Search from "./components/search";
 
 const HomeScreen = () => {
-  const safeAreaStyles: StyleProp<ViewStyle> = {
-    backgroundColor: "red"
-  };
-  const imageStyles: StyleProp<ImageStyle> = {
-    height: 120,
-    width: 120,
-    position: "absolute",
-    top: 0,
-    right: 0,
-    zIndex: 2
-  };
+  const { loading, filteredPokemon } = useHome();
 
   return (
-    <SafeAreaLayout style={safeAreaStyles}>
-      <StatusBar
-        animated={true}
-        translucent={true}
-        barStyle={"light-content"}
-      />
-      <Image
-        style={imageStyles}
-        source={Images.HomeBg}
-      />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <ViewBox className="bg-gray-200">
-          <Icons.Bug
-            width={100}
-            height={100}
+    <>
+      {!loading ? (
+        <SafeAreaLayout className="bg-slate-100">
+          <StatusBar
+            animated={true}
+            translucent={true}
+            barStyle={loading ? "light-content" : "dark-content"}
           />
-          <TextBox className="text-blue-500 text-lg">
-            Hello, Tailwind with NativeWind!
-          </TextBox>
-        </ViewBox>
-      </ScrollView>
-    </SafeAreaLayout>
+          <ImageTW
+            className="h-28 w-28 absolute top-3 right-3 z-10 opacity-30"
+            source={Images.HomeBg}
+          />
+          <ViewTW className="bg-slate-100 px-4 pb-4">
+            <TextTW className="font-montserrat-b text-5xl">Pokedex</TextTW>
+            <Search />
+          </ViewTW>
+          <ScrollViewTW contentInsetAdjustmentBehavior="automatic">
+            <PokeList pokemons={filteredPokemon} />
+          </ScrollViewTW>
+        </SafeAreaLayout>
+      ) : (
+        <Spinner />
+      )}
+    </>
   );
 };
 
