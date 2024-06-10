@@ -1,18 +1,18 @@
-import { AxiosError, AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
-import axios from "@interceptor/index";
 import { environments } from "@/config/environments";
 import { IPokemon } from "@/interfaces/pokemon";
+import axios from "@interceptor/index";
+import { AxiosError, AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
 
 export const useGetPokemonsSvc = (generation: number) => {
-  const controller: AbortController = new AbortController();
-  const { signal }: { signal: AbortSignal } = controller;
-
   const [data, setData] = useState<IPokemon[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller: AbortController = new AbortController();
+    const { signal }: { signal: AbortSignal } = controller;
+
     const fetchData: () => Promise<void> = async () => {
       setError(null);
       setLoading(true);
@@ -38,7 +38,6 @@ export const useGetPokemonsSvc = (generation: number) => {
     };
     fetchData();
     return () => controller.abort();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [generation]);
 
   return {

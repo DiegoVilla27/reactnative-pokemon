@@ -5,14 +5,13 @@ import { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
 const useGetColorsByImage = (url: string) => {
-  const controller: AbortController = new AbortController();
-  const { signal }: { signal: AbortSignal } = controller;
-
-  const [data, setData] = useState<Rgb>([0, 0, 0]);
+  const [data, setData] = useState<Rgb>([148, 163, 184]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller: AbortController = new AbortController();
+    const { signal }: { signal: AbortSignal } = controller;
     const fetchData: () => Promise<void> = async () => {
       try {
         const response: AxiosResponse<{ [colors: string]: Rgb }> =
@@ -30,7 +29,6 @@ const useGetColorsByImage = (url: string) => {
     };
     url && fetchData();
     return () => controller.abort();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   return {

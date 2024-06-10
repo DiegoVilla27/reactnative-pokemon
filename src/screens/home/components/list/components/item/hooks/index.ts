@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export const usePokeItem = (pokemon: IPokemon) => {
   const [pokemonFull, setPokemonFull] = useState<IPokemon>();
-  const { data } = useGetColorsByImage(
+  const { data, loading } = useGetColorsByImage(
     pokemon.info?.sprites.other?.home.front_default ?? ""
   );
 
@@ -22,6 +22,7 @@ export const usePokeItem = (pokemon: IPokemon) => {
   }, [data]);
 
   return {
-    pokemonFull
+    pokemonFull,
+    loading
   };
 };

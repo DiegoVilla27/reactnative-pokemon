@@ -26,9 +26,9 @@ export const GradientBackground = (color?: string | number | Rgb): string[] => {
       `rgb(${rX6}, ${gX6}, ${bX6}) 10%`,
       `rgb(${rX8}, ${gX8}, ${bX8}) 0%`
     ];
-    return color ? colorFilled : ["rgb(0, 0, 0)"];
+    return color ? colorFilled : ["rgb(148, 163, 184)"];
   }
-  return ["rgb(0, 0, 0)"];
+  return ["rgb(148, 163, 184)"];
 };
 
 const darkenColor = (color: Rgb, percentage: number): number[] => {
