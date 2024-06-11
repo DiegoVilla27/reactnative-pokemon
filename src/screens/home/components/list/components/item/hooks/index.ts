@@ -1,28 +1,15 @@
-import useGetColorsByImage from "@services/colors";
+import store from "@/store";
 import { IPokemon } from "@interfaces/pokemon";
-import { useEffect, useState } from "react";
+import { toggle } from "@store/pokemon";
+import { useDispatch } from "react-redux";
 
-export const usePokeItem = (pokemon: IPokemon) => {
-  const [pokemonFull, setPokemonFull] = useState<IPokemon>();
-  const { data, loading } = useGetColorsByImage(
-    pokemon.info?.sprites.other?.home.front_default ?? ""
-  );
+export const usePokeItem = () => {
+  const dispatch = useDispatch<typeof store.dispatch>();
 
-  useEffect(() => {
-    if (pokemon) {
-      const setNewData = async () => {
-        setPokemonFull({
-          ...pokemon,
-          color: data
-        });
-      };
-      setNewData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  const selectPokemon = (pokemon: IPokemon) =>
+    dispatch(toggle({ pokemon }) as any); // eslint-disable-line @typescript-eslint/no-explicit-any
 
   return {
-    pokemonFull,
-    loading
+    selectPokemon
   };
 };

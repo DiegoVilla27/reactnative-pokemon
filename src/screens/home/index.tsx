@@ -8,7 +8,8 @@ import Search from "./components/search";
 import { useHome } from "./hooks";
 
 const HomeScreen = () => {
-  const { loading, filteredPokemon, safeAreaStyles } = useHome();
+  const { data, setFilteredPokemon, loading, filteredPokemon, safeAreaStyles } =
+    useHome();
 
   return (
     <SafeAreaLayout
@@ -30,7 +31,10 @@ const HomeScreen = () => {
             <TextTW className="font-montserrat-b text-5xl text-black">
               Pokedex
             </TextTW>
-            <Search />
+            <Search
+              setFilteredPokemon={setFilteredPokemon}
+              pokemons={data}
+            />
           </ViewTW>
           <ScrollViewTW>
             <PokeList pokemons={filteredPokemon} />
