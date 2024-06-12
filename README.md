@@ -7,7 +7,7 @@ Pokedex first/second generation
 ```bash
 npx react-native init reactnativePokemon --template react-native-template-typescript
 ```
-
+  
 - React - Version 18.2.0
 - Metro - Version 0.80.90
 - Node - Version 20.12.2
