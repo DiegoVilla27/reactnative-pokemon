@@ -26,7 +26,7 @@ const PokeItem = ({ pokemon }: IProps) => {
               accessibilityElementsHidden={true}
             >
               <ViewTW className="relative z-10 text-left flex flex-col gap-1">
-                <TextTW className="text-black font-montserrat-l capitalize text-3xl font-bold">
+                <TextTW className="text-black font-montserrat-l capitalize text-3xl">
                   #{pokemon.info?.id}
                 </TextTW>
                 <TextTW className="capitalize text-3xl font-bold text-white font-montserrat-b">

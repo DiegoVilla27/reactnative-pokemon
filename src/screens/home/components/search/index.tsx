@@ -4,6 +4,7 @@ import { IPokemon } from "@interfaces/pokemon";
 import { Dispatch, SetStateAction } from "react";
 import { Controller } from "react-hook-form";
 import useSearch from "./hooks";
+import { ErrorMessageCustom } from "@components/error-msg";
 
 interface IProps {
   setFilteredPokemon: Dispatch<SetStateAction<IPokemon[]>>;
@@ -11,7 +12,7 @@ interface IProps {
 }
 
 const Search = ({ setFilteredPokemon, pokemons }: IProps) => {
-  const { control, iconStyled, inputStyled } = useSearch({
+  const { errors, control, iconStyled, inputStyled } = useSearch({
     setFilteredPokemon,
     pokemons
   });
@@ -23,15 +24,18 @@ const Search = ({ setFilteredPokemon, pokemons }: IProps) => {
         control={control}
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
-          <TextInputTW
-            className="w-2/3 h-10 rounded-full border-[0.2px] border-slate-400 pl-10 pr-4 bg-slate-200 text-slate-600 shadow-md font-montserrat-r"
-            placeholder="Search Pokémon..."
-            placeholderTextColor="gray"
-            style={inputStyled}
-            keyboardType="default"
-            onChangeText={onChange}
-            value={value ?? ""}
-          />
+          <ViewTW>
+            <TextInputTW
+              className="w-2/3 h-10 rounded-full border-[0.2px] border-slate-400 pl-10 pr-4 bg-slate-200 text-slate-600 shadow-md font-montserrat-r"
+              placeholder="Search Pokémon..."
+              placeholderTextColor="gray"
+              style={inputStyled}
+              keyboardType="default"
+              onChangeText={onChange}
+              value={value ?? ""}
+            />
+            {ErrorMessageCustom(errors, "query")}
+          </ViewTW>
         )}
         name="query"
         defaultValue=""

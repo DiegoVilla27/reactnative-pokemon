@@ -17,7 +17,8 @@ module.exports = {
           "@services": "./src/services",
           "@interfaces": "./src/interfaces",
           "@store": "./src/store",
-          "@screens": "./src/screens"
+          "@screens": "./src/screens",
+          "@routes": "./src/routes"
         },
         extensions: [".js", ".jsx", ".json", ".tsx", ".ts"]
       }

@@ -12,7 +12,7 @@ const PokeList = ({ pokemons }: IProps) => {
   }
 
   return (
-    <ViewTW className="p-4 pt-0">
+    <ViewTW className="p-4 pt-0 pb-28">
       {pokemons.map((pokemon: IPokemon) => (
         <PokeItem
           key={pokemon.name}

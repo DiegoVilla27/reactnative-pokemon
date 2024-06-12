@@ -17,9 +17,8 @@ interface IProps {
 const useSearch = ({ setFilteredPokemon, pokemons }: IProps) => {
   const iconStyled: StyleProp<ViewStyle> = {
     position: "absolute",
-    top: "50%",
+    top: 10,
     left: 13,
-    transform: [{ translateY: -10 }],
     zIndex: 50
   };
 
@@ -29,8 +28,8 @@ const useSearch = ({ setFilteredPokemon, pokemons }: IProps) => {
 
   const {
     watch,
-    control
-    //formState: { errors }
+    control,
+    formState: { errors }
   } = useForm<IForm>({
     resolver: yupResolver(validationsSearch({ maxLength: 50 })),
     criteriaMode: "all",
@@ -56,6 +55,7 @@ const useSearch = ({ setFilteredPokemon, pokemons }: IProps) => {
   }, [watch]);
 
   return {
+    errors,
     control,
     iconStyled,
     inputStyled
